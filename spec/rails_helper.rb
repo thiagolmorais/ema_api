@@ -3,14 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 SimpleCov.start 'rails' do
-  add_filter '/app/helpers/'
-  add_filter '/app/models/user.rb'
-  add_filter '/app/jobs/'
-  add_filter '/app/channels/'
-  add_filter '/app/assets/'
-  add_filter '/app/models/application_record.rb'
-  add_filter '/app/mailers/application_mailer.rb'
-  add_filter '/app/controllers/api/api_controller.rb'
+  add_filter '/app/controllers/application_controller.rb'
 end
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
@@ -69,7 +62,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  #warden para helper de login
-  config.include Warden::Test::Helpers
 end
