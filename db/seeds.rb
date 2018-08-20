@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-FactoryBot.create(:customer, name: 'Custumer A', email: 'customer.a@email.com',
-                             phone: '123456789', status: true)
-FactoryBot.create(:customer, name: 'Custumer B', email: 'customer.b@email.com',
-                             phone: '987654321', status: false)
+Custumer.create(name: 'Custumer A', email: 'customer.a@email.com',
+                phone: '123456789', status: true)
+Custumer.create(name: 'Custumer B', email: 'customer.b@email.com',
+                phone: '987654321', status: false)
