@@ -21,6 +21,16 @@ class Api::CustomersController < ApplicationController
     end
   end
 
+  def update
+    customer = Customer.find(params[:id])
+    binding.pry
+    if customer.update(customer_params)
+      render json: { message: 'Cliente editado com sucesso.' }
+    else
+      render json: { message: 'Cliente não pode editado cadastrado.' }
+    end
+  end
+
   private
 
   def customer_params
