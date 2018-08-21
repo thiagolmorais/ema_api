@@ -1,6 +1,6 @@
 require 'rails_helper'
 describe 'Customers API', type: :request do
-  it 'see a specific customers registered' do
+  it 'see a specific customer registered' do
     customer_a = create(:customer, name: 'Custumer A',
                                    email: 'customer.a@email.com',
                                    phone: '123456789', status: true)
@@ -20,8 +20,8 @@ describe 'Customers API', type: :request do
   it 'and see a message if no customer_id found' do
       get api_customer_path(1)
 
-      expect(response.body).to eq 'Nenhum cliente encontrado'
+      data = JSON.parse(response.body)
+      expect(data['message']).to eq 'Cliente não encontrado'
       expect(response.status).to eq 404
     end
-
 end
