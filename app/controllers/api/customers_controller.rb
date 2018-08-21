@@ -26,7 +26,7 @@ class Api::CustomersController < ApplicationController
     if customer.update(customer_params)
       render json: { message: 'Cliente editado com sucesso.' }
     else
-      render json: { message: 'Cliente não pode editado cadastrado.' }
+      render json: { message: 'Cliente não pode editado.' }
     end
   end
 
