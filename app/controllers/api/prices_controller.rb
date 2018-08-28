@@ -19,6 +19,6 @@ class Api::PricesController < ApplicationController
   private
 
   def price_params
-    params.permit(:name, :email, :phone, :customer_id)
+    params.permit(:price, :readjust, :customer_id)
   end
 end
