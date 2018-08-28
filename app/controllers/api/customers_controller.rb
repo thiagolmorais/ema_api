@@ -14,7 +14,8 @@ class Api::CustomersController < ApplicationController
   end
 
   def create
-    if Customer.create(customer_params)
+    customer = Customer.new(customer_params)
+    if customer.save
       render json: { message: 'Cliente cadastrado com sucesso.' }, status: 201
     else
       render json: { message: 'Cliente não pode ser cadastrado.' }
