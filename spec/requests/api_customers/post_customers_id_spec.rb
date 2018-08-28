@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'net/http'
 describe 'Customers API', type: :request do
   it 'create customer' do
     data = {}
