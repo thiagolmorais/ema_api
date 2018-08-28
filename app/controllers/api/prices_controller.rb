@@ -8,7 +8,8 @@ class Api::PricesController < ApplicationController
   end
 
   def create
-    if Price.create(price_params)
+    price = Price.new(price_params)
+    if price.save
       render json: { message: 'Preço cadastrado com sucesso.' }, status: 201
     else
       render json: { message: 'Preço não pode ser cadastrado.' }
@@ -18,6 +19,6 @@ class Api::PricesController < ApplicationController
   private
 
   def price_params
-    params.permit(:name, :email, :phone, :customer_id)
+    params.permit(:price, :readjust, :customer_id)
   end
 end
