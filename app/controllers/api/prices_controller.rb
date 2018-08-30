@@ -2,7 +2,7 @@ class Api::PricesController < ApplicationController
 
   def index
     customer = Customer.find(params[:customer_id])
-    prices = customer.prices
+    prices = customer.prices.order(:readjust)
     json = prices.as_json
     render json: json
   end
