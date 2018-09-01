@@ -4,7 +4,7 @@ FactoryBot.define do
     start_time "2018-08-27 20:14:42"
     end_time "2018-08-27 20:14:42"
     status false
-    price 1.5
+    price 199.52
     custumer_id 1
     customer nil
   end
