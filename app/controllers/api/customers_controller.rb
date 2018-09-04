@@ -31,6 +31,15 @@ class Api::CustomersController < ApplicationController
     end
   end
 
+  def appointment
+    customer = Customer.find(params[:customer_id])
+    appointments = customer.appointments
+    json = appointments.as_json
+    render json: json
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: 'Cliente não encontrado' }, status: 404
+  end
+
   private
 
   def customer_params

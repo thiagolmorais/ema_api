@@ -16,6 +16,13 @@ class Api::PricesController < ApplicationController
     end
   end
 
+  def destroy
+    price = Price.find(params[:id])
+    if price.destroy
+      render json: { message: 'Preço deletado com sucesso.' }, status: 200
+    end
+  end
+
   private
 
   def price_params
