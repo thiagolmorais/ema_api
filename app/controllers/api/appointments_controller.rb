@@ -6,6 +6,14 @@ class Api::AppointmentsController < ApplicationController
     render json: json
   end
 
+  def show
+    appointment = Appointment.find(params[:id])
+    json = appointment.as_json
+    render json: json
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: 'Compromisso não encontrado' }, status: 404
+  end
+
   def create
     appointment = Appointment.new(appointment_params)
     if appointment.save

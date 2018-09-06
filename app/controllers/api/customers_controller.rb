@@ -40,6 +40,17 @@ class Api::CustomersController < ApplicationController
     render json: { message: 'Cliente não encontrado' }, status: 404
   end
 
+  def current_price
+    customer = Customer.find(params[:customer_id])
+    current_price = customer.current_price
+    if current_price.any?
+      json = current_price.as_json
+      render json: json
+    else
+      render json: { message: 'Cliente não tem preço cadastrado.' }
+    end
+  end
+
   private
 
   def customer_params

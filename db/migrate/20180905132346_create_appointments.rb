@@ -6,7 +6,6 @@ class CreateAppointments < ActiveRecord::Migration[5.1]
       t.time :end_time
       t.boolean :status, default: false
       t.float :price
-      t.integer :custumer_id
       t.references :customer, foreign_key: true
 
       t.timestamps
