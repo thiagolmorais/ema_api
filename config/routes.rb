@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :customers, only:[:index, :show, :create, :update] do
       resources :prices, only:[:index, :create, :destroy]
-      get "appointments", { controller: 'customers', action: 'appointment' }
+      get 'current_price', { controller: 'customers', action: 'current_price' }
+      get 'appointments', { controller: 'customers', action: 'appointment' }
     end
-    resources :appointments, only:[:index, :create, :update, :destroy]
+    resources :appointments, only:[:index, :show, :create, :update, :destroy]
   end
 end

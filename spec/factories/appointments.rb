@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :appointment do
-    date '2018-08-27'
-    start_time '20:00:00'
-    end_time '21:00:00'
+    date '2018-09-05'
+    start_time '10:000'
+    end_time '11:00'
     status false
     price 199.52
-    custumer_id 1
+    customer 1
   end
 end
