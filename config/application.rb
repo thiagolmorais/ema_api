@@ -38,5 +38,6 @@ module EMAApi
         resource '*', :headers => :any, :methods => :any
       end
     end
+    config.i18n.default_locale = :'pt-BR'
   end
 end

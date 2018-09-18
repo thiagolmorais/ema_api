@@ -12,7 +12,9 @@ class Customer < ApplicationRecord
   end
 
   def current_price
-    self.prices.order(readjust: :desc).where("readjust < ?", Time.now).limit(1)
+    self.prices.order(readjust: :desc).
+                where("readjust < ?", Time.now).
+                limit(1)
   end
 
   def active_customers
