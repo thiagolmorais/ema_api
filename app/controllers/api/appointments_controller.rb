@@ -15,11 +15,11 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def create
-    appointment = Appointment.new(appointment_params)
-    if appointment.save
+    create_params
+    if @appointment.save
       render json: { message: 'Compromisso cadastrado com sucesso.' }, status: 201
     else
-      render json: { message: 'Compromisso não pode ser cadastrado.' }
+      render json: { message: @appointment.errors.full_messages }
     end
   end
 
@@ -43,5 +43,13 @@ class Api::AppointmentsController < ApplicationController
 
   def appointment_params
     params.permit(:customer_id, :date, :end_time, :price, :start_time)
+  end
+
+  def create_params
+    appointment = Appointment.new(appointment_params)
+    appointment.end_time = appointment.start_time + 3600 if appointment.start_time
+    appointment.date = appointment_params[:start_time].to_date
+    appointment.price = appointment.customer.current_price.first.price
+    @appointment = appointment
   end
 end

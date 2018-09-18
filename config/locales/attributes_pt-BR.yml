@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    attributes:
+      customer:
+        name: 'Nome'
+        email: 'Email'
+        phone: 'Telefone'
+        status: 'Status'
+      price:
+        price: 'Preço'
+        readjust: 'Data de Reajuste'
+        customer_id: 'Cliente'
+      appointment:
+        date: 'Data'
+        start_time: 'Hora inicial'
+        end_time: 'Hora final'
+        status: 'Status'
+        price: 'Preço'
+        customer_id: 'Cliente'
+        errors:
+          date:
+            taken: 'de agendamento não está vaga'

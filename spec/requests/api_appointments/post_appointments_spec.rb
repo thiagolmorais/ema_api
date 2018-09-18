@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Appointments API', type: :request do
   it 'create appointments' do
     customer = create(:customer)
+    price = create(:price, readjust: '2018-09-01', customer_id: customer.id)
 
     data = {}
     data['date'] = '2018-08-27'
@@ -11,8 +12,8 @@ describe 'Appointments API', type: :request do
     data['price'] = 199.52
 
     valid_params = {}
-    valid_params = { date: '2018-08-27', start_time: '08:00:00',
-                     end_time: '09:00:00', price: 199.52 }
+    valid_params = { start_time: '2018-09-01T05:00:00.000Z',
+                     price: 199.52 }
 
     post api_appointments_path(customer_id: customer.id ,params: valid_params)
     data = JSON.parse(response.body)
@@ -22,6 +23,7 @@ describe 'Appointments API', type: :request do
 
   it 'create appointments with blank params' do
     customer = create(:customer)
+    price = create(:price, readjust: '2018-09-01', customer_id: customer.id)
 
     data = {}
     data['date'] = ''
@@ -35,6 +37,6 @@ describe 'Appointments API', type: :request do
 
     post api_appointments_path(customer_id: customer.id ,params: valid_params)
     data = JSON.parse(response.body)
-    expect(data['message']).to eq 'Compromisso não pode ser cadastrado.'
+    expect(data['message']).to eq ["Data não pode ficar em branco", "Hora inicial não pode ficar em branco", "Hora final não pode ficar em branco"]
   end
 end
