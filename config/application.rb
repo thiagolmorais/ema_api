@@ -37,6 +37,11 @@ module EMAApi
         origins 'http://ema-secretariavirtual.herokuapp.com', /https*:\/\/.*?bloopist\.com/
         resource '*', :headers => :any, :methods => :any
       end
+
+      allow do
+        origins 'http://localhost:3000', /https*:\/\/.*?bloopist\.com/
+        resource '*', :headers => :any, :methods => :any
+      end
     end
     config.i18n.default_locale = :'pt-BR'
   end
