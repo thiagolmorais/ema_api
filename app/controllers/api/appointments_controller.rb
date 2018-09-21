@@ -2,12 +2,16 @@ class Api::AppointmentsController < ApplicationController
 
   def index
     appointments = Appointment.all.order(:date, :start_time)
+    appointments = appointments.map do |appointment|
+       appointment.as_json.merge(customer: appointment.customer.name)
+    end
     json = appointments.as_json
     render json: json
   end
 
   def show
     appointment = Appointment.find(params[:id])
+    appointment = appointment.as_json.merge(customer: appointment.customer.name)
     json = appointment.as_json
     render json: json
   rescue ActiveRecord::RecordNotFound
