@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20181103120901) do
 
   create_table "appointments", force: :cascade do |t|
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.boolean "status", default: false
     t.float "price"
     t.integer "customer_id"
