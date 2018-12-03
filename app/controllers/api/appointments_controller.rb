@@ -36,10 +36,13 @@ class Api::AppointmentsController < ApplicationController
     end
   end
 
-  def destroy
+  def estornar
     appointment = Appointment.find(params[:id])
-    if appointment.destroy
-      render json: { message: 'Compromisso deletado com sucesso.' }, status: 200
+    if Invoice.find_by(appointment_id: appointment.id).status == false
+      appointment.destroy
+      render json: { message: 'Atendimento estornado.' }
+    else
+      render json: { message: 'Atendimento não pode ser estornado, há faturas quitadas.' }
     end
   end
 

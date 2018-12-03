@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       get 'current_price', { controller: 'customers', action: 'current_price' }
       get 'appointments', { controller: 'customers', action: 'appointment' }
     end
-    resources :appointments, only:[:index, :show, :create, :update, :destroy]
+    resources :appointments, only:[:index, :show, :create, :update]
+    resources :invoices, only:[:index, :create]
+    delete 'appointment', { controller: 'appointments', action: 'estornar' }
+    put 'invoice', { controller: 'invoices', action: 'quitar' }
+    delete 'invoice', { controller: 'invoices', action: 'estornar' }
     get 'setting', { controller: 'configuration', action: 'setting' }
     put 'setting', { controller: 'configuration', action: 'modify' }
   end
