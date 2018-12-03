@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905132346) do
+ActiveRecord::Schema.define(version: 20181103120901) do
 
   create_table "appointments", force: :cascade do |t|
-    t.date "date"
     t.time "start_time"
     t.time "end_time"
     t.boolean "status", default: false
@@ -40,6 +39,13 @@ ActiveRecord::Schema.define(version: 20180905132346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_prices_on_customer_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer "readjust", default: 12
+    t.integer "duration", default: 3600
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

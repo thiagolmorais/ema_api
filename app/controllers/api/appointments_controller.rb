@@ -1,7 +1,7 @@
 class Api::AppointmentsController < ApplicationController
 
   def index
-    appointments = Appointment.all.order(:date, :start_time)
+    appointments = Appointment.all.order(:start_time)
     appointments = appointments.map do |appointment|
        appointment.as_json.merge(customer: appointment.customer.name)
     end
@@ -46,13 +46,13 @@ class Api::AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:customer_id, :date, :end_time, :price, :start_time)
+    params.permit(:customer_id, :end_time, :price, :start_time)
   end
 
   def create_params
     appointment = Appointment.new(appointment_params)
-    appointment.end_time = appointment.start_time + 3600 if appointment.start_time
-    appointment.date = appointment_params[:start_time].to_date
+    duration = Setting.last.duration
+    appointment.end_time = appointment.start_time + duration if appointment.start_time
     appointment.price = appointment.customer.current_price.first.price
     @appointment = appointment
   end

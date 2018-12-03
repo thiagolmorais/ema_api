@@ -7,5 +7,7 @@ Rails.application.routes.draw do
       get 'appointments', { controller: 'customers', action: 'appointment' }
     end
     resources :appointments, only:[:index, :show, :create, :update, :destroy]
+    get 'setting', { controller: 'configuration', action: 'setting' }
+    put 'setting', { controller: 'configuration', action: 'modify' }
   end
 end

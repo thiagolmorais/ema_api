@@ -1,6 +1,6 @@
 class Appointment < ApplicationRecord
   belongs_to :customer
-  validates :date, :start_time, :end_time, :price, presence: true
+  validates :start_time, :end_time, :price, presence: true
   validate :available_appointment?
 
   def status_appointment
@@ -8,7 +8,7 @@ class Appointment < ApplicationRecord
   end
 
   def available_appointment?
-    if Appointment.where("start_time < ? AND end_time > ? AND date = ?", self.end_time, self.start_time, self.date).any?
+    if Appointment.where("start_time < ? AND end_time > ?", self.end_time, self.start_time).any?
       self.errors.add('date',I18n.t('activerecord.attributes.appointment.errors.date.taken'))
     end
   end
