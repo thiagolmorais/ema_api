@@ -2,7 +2,6 @@ class Api::InvoicesController < ApplicationController
   def index
     invoices = Invoice.all.order(:due_date)
     invoices = invoices.map do |invoice|
-      # binding.pry
        invoice.as_json.merge(customer: invoice.customer)
     end
     json = invoices.as_json
