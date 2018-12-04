@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   has_many :prices
   has_many :appointments
+  has_many :invoices, through: :appointments
   validates :name, :email, :phone, presence: true
 
   def status_customer
@@ -20,4 +21,6 @@ class Customer < ApplicationRecord
   def active_customers
     Customer.where(status: true)
   end
+
+
 end

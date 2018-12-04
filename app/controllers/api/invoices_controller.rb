@@ -16,6 +16,7 @@ class Api::InvoicesController < ApplicationController
     invoice.competence = "#{appointment.start_time.to_date.month}/#{appointment.start_time.to_date.year}"
     invoice.due_date = "5/#{appointment.start_time.to_date.month+1}/#{appointment.start_time.to_date.year}"
     if invoice.save
+      appointment.update(status: true)
       return render json: invoice
     end
     render json: { message: 'Erro' }, status: 404
