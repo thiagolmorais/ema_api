@@ -1,7 +1,7 @@
 class Appointment < ApplicationRecord
   belongs_to :customer
   validates :start_time, :end_time, :price, presence: true
-  validate :available_appointment?
+  validate :available_appointment?, on: :create
 
   def status_appointment
     status ? 'Atendido' : 'Agendado'
