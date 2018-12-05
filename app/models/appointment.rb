@@ -1,6 +1,5 @@
 class Appointment < ApplicationRecord
   belongs_to :customer
-  belongs_to :invoice
   validates :start_time, :end_time, :price, presence: true
   validate :available_appointment?
 

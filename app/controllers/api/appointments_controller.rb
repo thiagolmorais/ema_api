@@ -19,6 +19,7 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def create
+    binding.pry
     create_params
     if @appointment.save
       render json: { message: 'Compromisso cadastrado com sucesso.' }, status: 201
@@ -53,9 +54,9 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def create_params
-    appointment = Appointment.new(appointment_params)
     duration = Setting.last.duration
-    appointment.end_time = appointment.start_time + duration if appointment.start_time
+    appointment = Appointment.new(appointment_params)
+    appointment.end_time = appointment.start_time + duration if appointment.start_time.present?
     appointment.price = appointment.customer.current_price.first.price
     @appointment = appointment
   end
