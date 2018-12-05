@@ -19,7 +19,6 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def create
-    binding.pry
     create_params
     if @appointment.save
       render json: { message: 'Compromisso cadastrado com sucesso.' }, status: 201
