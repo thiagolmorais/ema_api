@@ -38,7 +38,7 @@ class Api::AppointmentsController < ApplicationController
 
   def estornar
     appointment = Appointment.find(params[:id])
-    if Invoice.find_by(appointment_id: appointment.id).status == false
+    if appointment.status == false
       appointment.destroy
       render json: { message: 'Atendimento estornado.' }
     else
