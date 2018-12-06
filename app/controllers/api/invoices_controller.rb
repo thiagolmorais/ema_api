@@ -14,7 +14,7 @@ class Api::InvoicesController < ApplicationController
     invoice.appointment_id = appointment.id
     invoice.value = appointment.price
     invoice.competence = "#{appointment.start_time.to_date.month}/#{appointment.start_time.to_date.year}"
-    invoice.due_date = "5/#{appointment.start_time.to_date.month+1}/#{appointment.start_time.to_date.year}"
+    invoice.due_date = Time.now+10.days
     if invoice.save
       appointment.update(status: true)
       return render json: invoice

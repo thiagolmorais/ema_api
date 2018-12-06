@@ -56,6 +56,7 @@ class Api::AppointmentsController < ApplicationController
   def create_params
     duration = Setting.last.duration
     appointment = Appointment.new(appointment_params)
+    appointment.start_time = params[:start_time].to_time
     appointment.end_time = appointment.start_time + duration if appointment.start_time.present?
     appointment.price = appointment.customer.current_price.first.price
     @appointment = appointment
