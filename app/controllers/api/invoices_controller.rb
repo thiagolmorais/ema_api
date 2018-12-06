@@ -42,6 +42,7 @@ class Api::InvoicesController < ApplicationController
 
   def quitar_invoice(invoice)
     invoice.status = true
+    invoice.payment = params[:payment]
     if invoice.save
       render json: { message: 'Fatura quitada.' }
     else
@@ -51,6 +52,7 @@ class Api::InvoicesController < ApplicationController
 
   def estornar_invoice(invoice)
     invoice.status = false
+    invoice.payment = nil
     if invoice.save
       render json: { message: 'Fatura estornada.' }
     else
