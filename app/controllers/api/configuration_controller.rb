@@ -7,15 +7,21 @@ class Api::ConfigurationController < ApplicationController
   end
 
   def modify
-    setting = Setting.last
-    if setting.update(setting_params)
-      render json: { message: 'Compromisso editado com sucesso.' }
-    else
-      render json: { message: 'Compromisso não pode ser editado.' }
-    end
+    set = Setting.last
+    set.nil? ? create_setting : update_setting(set)
   end
 
   private
+
+  def create_setting
+    Setting.create(setting_params)
+    render json: { message: 'Configuração editada com sucesso.' }
+  end
+
+  def update_setting(set)
+    set.update(setting_params)
+    render json: { message: 'Configuração editada com sucesso.' }
+  end
 
   def setting_params
     params.permit(:readjust, :duration)
