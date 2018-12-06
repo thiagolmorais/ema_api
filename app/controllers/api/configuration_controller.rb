@@ -2,6 +2,7 @@ class Api::ConfigurationController < ApplicationController
 
   def setting
     json = Setting.last.as_json
+    return render json: [] if json.nil?
     render json: json
   end
 
