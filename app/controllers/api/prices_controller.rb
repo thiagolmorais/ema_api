@@ -1,8 +1,14 @@
 class Api::PricesController < ApplicationController
 
+  # def index
+  #   customer = Customer.find(params[:customer_id])
+  #   prices = customer.prices.order(:readjust)
+  #   json = prices.as_json
+  #   render json: json
+  # end
   def index
     customer = Customer.find(params[:customer_id])
-    prices = customer.prices.order(:readjust)
+    prices = customer.current_price
     json = prices.as_json
     render json: json
   end
