@@ -47,6 +47,15 @@ class Api::AppointmentsController < ApplicationController
     end
   end
 
+  def excluir
+    appointment = Appointment.find(params[:id])
+    if appointment.destroy
+      render json: { message: 'Atendimento excluído.' }
+    else
+      render json: { message: 'Atendimento não pode ser excluído, há faturas quitadas.' }
+    end
+  end
+
   private
 
   def appointment_params

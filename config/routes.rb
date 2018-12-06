@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     end
     resources :appointments, only:[:index, :show, :create, :update]
     resources :invoices, only:[:index, :create]
-    delete 'appointment', { controller: 'appointments', action: 'estornar' }
+    put 'appointment', { controller: 'appointments', action: 'estornar' }
+    delete 'appointment', { controller: 'appointments', action: 'excluir' }
     put 'invoice', { controller: 'invoices', action: 'quitar' }
     delete 'invoice', { controller: 'invoices', action: 'estornar' }
     get 'setting', { controller: 'configuration', action: 'setting' }
