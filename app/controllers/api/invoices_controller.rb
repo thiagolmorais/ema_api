@@ -24,13 +24,8 @@ class Api::InvoicesController < ApplicationController
 
   def quitar
     invoice = Invoice.find(params[:id])
-    invoice.status = true
-    invoice.payment = params[:payment]
-    if invoice.save
-      render json: { message: 'Fatura quitada.' }
-    else
-      render json: { message: 'Fatura não pode ser quitada.' }
-    end
+    return quitar_invoice(invoice) if invoice.status == false
+    estornar_invoice(invoice)
   end
 
   def estornar
@@ -44,6 +39,24 @@ class Api::InvoicesController < ApplicationController
   end
 
   private
+
+  def quitar_invoice(invoice)
+    invoice.status = true
+    if invoice.save
+      render json: { message: 'Fatura quitada.' }
+    else
+      render json: { message: 'Fatura não pode ser quitada.' }, status: 400
+    end
+  end
+
+  def estornar_invoice(invoice)
+    invoice.status = false
+    if invoice.save
+      render json: { message: 'Fatura estornada.' }
+    else
+      render json: { message: 'Fatura não pode ser estornada.' }, status: 400
+    end
+  end
 
   def invoice_params
     params.permit(:appointment_id, :value, :competence, :due_date, :payment, :status)
